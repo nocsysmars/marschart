@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ include "marschart.fullname" . }}
+  labels:
+    {{- include "marschart.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 443
+      protocol: TCP
+      name: http-443
+  selector:
+    {{- include "marschart.selectorLabels" . | nindent 4 }}

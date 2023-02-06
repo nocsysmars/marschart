@@ -1,0 +1,22 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mars-download
+  namespace: {{ .Values.namespace }}
+  annotations:
+    #kubesphere.io/creator: admin
+    pv.kubernetes.io/bind-completed: 'yes'
+    pv.kubernetes.io/bound-by-controller: 'yes'
+    volume.beta.kubernetes.io/storage-provisioner: openebs.io/local
+    #volume.kubernetes.io/selected-node: sq-k8sp
+  finalizers:
+    - kubernetes.io/pvc-protection
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pvc-mars
+  storageClassName: local
+  volumeMode: Filesystem
