@@ -153,8 +153,6 @@ spec:
               value: 'true'
             - name: discovery.zen.minimum_master_nodes
               value: '1'
-            - name: cluster.initial_master_nodes
-              value: marsdb-node
             - name: node.name
               value: marsdb-node
             - name: network.host
